@@ -13,12 +13,10 @@ function createWindow() {
     }
   });
 
-  // Charge le build Angular
   win.loadFile(
-    path.join(__dirname, '../dist/mon-app/index.html')
+    path.join(__dirname, '../FatigoonUI/dist/FatigoonUI/browser/index.html')
   );
 
-  // Sécurité recommandée
   win.removeMenu();
 }
 
@@ -26,7 +24,8 @@ app.whenReady().then(() => {
   createWindow();
 
   app.on('activate', () => {
-    if (BrowserWindow.getAllWindows().length === 0) createWindow();
+    if (BrowserWindow.getAllWindows().length === 0)
+      createWindow();
   });
 });
 
