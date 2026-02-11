@@ -1,0 +1,14 @@
+{
+  "name": "fatigoon-desktop",
+  "version": "1.0.0",
+  "description": "App Electron qui affiche l'app Angular FatigoonUI",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder"
+  },
+  "devDependencies": {
+    "electron": "^29.0.0",
+    "electron-builder": "^24.0.0"
+  }
+}
