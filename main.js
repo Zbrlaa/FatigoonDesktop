@@ -1,10 +1,12 @@
 const { app, BrowserWindow } = require('electron');
 const path = require('path');
 
+app.disableHardwareAcceleration();
+
 function createWindow() {
   const win = new BrowserWindow({
-    width: 1200,
-    height: 800,
+    fullscreen: true,
+    // frame: false, //Enleve bordure
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
       contextIsolation: true,
@@ -18,6 +20,7 @@ function createWindow() {
   );
 
   win.removeMenu();
+  return win;
 }
 
 app.whenReady().then(() => {
