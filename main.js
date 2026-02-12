@@ -1,4 +1,4 @@
-const { app, BrowserWindow } = require('electron');
+const { app, BrowserWindow, globalShortcut } = require('electron');
 const path = require('path');
 
 app.disableHardwareAcceleration();
@@ -11,7 +11,7 @@ function createWindow() {
       preload: path.join(__dirname, 'preload.js'),
       contextIsolation: true,
       nodeIntegration: false,
-      sandbox: false
+      sandbox: true
     }
   });
 
@@ -21,12 +21,13 @@ function createWindow() {
 
   win.removeMenu();
 
-  win.webContents.on('did-finish-load', () => {
-    globalShortcut.register('CommandOrControl+P', () => {
-      // Cette commande force l'ouverture de la fenêtre d'impression native de Chromium
-      win.webContents.print({ silent: false }); 
-    });
-  });
+  //Raccourcis clavier
+  // win.webContents.on('did-finish-load', () => {
+  //   globalShortcut.register('CommandOrControl+P', () => {
+  //     // Cette commande force l'ouverture de la fenêtre d'impression native de Chromium
+  //     win.webContents.print({ silent: false }); 
+  //   });
+  // });
 
   return win;
 }
