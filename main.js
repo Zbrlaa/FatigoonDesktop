@@ -11,7 +11,7 @@ function createWindow() {
       preload: path.join(__dirname, 'preload.js'),
       contextIsolation: true,
       nodeIntegration: false,
-      sandbox: true
+      sandbox: false
     }
   });
 
@@ -20,6 +20,14 @@ function createWindow() {
   );
 
   win.removeMenu();
+
+  win.webContents.on('did-finish-load', () => {
+    globalShortcut.register('CommandOrControl+P', () => {
+      // Cette commande force l'ouverture de la fenêtre d'impression native de Chromium
+      win.webContents.print({ silent: false }); 
+    });
+  });
+
   return win;
 }
 
@@ -30,6 +38,10 @@ app.whenReady().then(() => {
     if (BrowserWindow.getAllWindows().length === 0)
       createWindow();
   });
+});
+
+app.on('will-quit', () => {
+  globalShortcut.unregisterAll();
 });
 
 app.on('window-all-closed', () => {
